@@ -28,16 +28,12 @@ public class Reservations {
 	
 	public long duration() {
 		long diff = checkOut.getTime() - checkIn.getTime();
-		return TimeUnit.DAYS.convert(diff, TimeUnit.DAYS);
+		return TimeUnit.DAYS.convert(diff, TimeUnit.DAYS.MILLISECONDS);
 	}
 
-	public void updateDates(String checkIn, String checkOut) {
-		try {
-			this.checkIn = sdf.parse(checkIn);
-			this.checkOut = sdf.parse(checkOut);
-		} catch (ParseException e) {
-			System.err.println("Data inválida! (Erro de conversão)");
-		}
+	public void updateDates(Date checkIn, Date checkOut) {
+			this.checkIn = checkIn;
+			this.checkOut = checkOut;
 	}
 
 	public int getRoomNumber() {
