@@ -1,6 +1,5 @@
 package model.entities;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +12,11 @@ public class Reservations {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public Reservations(Date checkIn, Date checkOut, int roomNumber) {
+		Date date = new Date();
+		if (checkIn.after(checkOut))
+			throw new IllegalArgumentException("The check-out date must be after check-in date.");
+		if (!date.before(checkIn) || !date.before(checkOut))
+			throw new IllegalArgumentException("You must make reservation for future dates.");
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.roomNumber = roomNumber;
@@ -32,6 +36,12 @@ public class Reservations {
 	}
 
 	public void updateDates(Date checkIn, Date checkOut) {
+		Date date = new Date();
+		if (checkIn.after(checkOut))
+			throw new IllegalArgumentException("The check-out date must be after check-in date.");
+		if (!date.before(checkIn) || !date.before(checkOut))
+			throw new IllegalArgumentException("You must make reservation for future dates.");
+
 			this.checkIn = checkIn;
 			this.checkOut = checkOut;
 	}
