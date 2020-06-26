@@ -1,0 +1,4 @@
+A RuntimeException não precisa ser tratada antes da compilação e
+execução.
+A Exception precisa ser tratada antes da compilação e
+execução.
